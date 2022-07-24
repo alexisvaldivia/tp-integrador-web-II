@@ -8,8 +8,8 @@ class Compra {
         this.tarjeta = tarjeta
     }
 
-  agregarProducto() {
-  }
+    agregarProducto() {
+    }
 }
 
 class Producto {
@@ -33,14 +33,15 @@ class Producto {
 
 
 function crearProducto() {
-  let nombreProducto = document.getElementById(nombre);
-  let marcaProducto = document.getElementById(marca);
-  let categoriaProducto = document.getElementById(categoria);
-  let urlimageProducto = document.getElementById(urlimage);
-  let precioProducto = document.getElementById(precio);
-  let stockProducto = document.getElementById(stock);
+    var nombreProducto = document.getElementById(nombre-producto).value;
+    var marcaProducto = document.getElementById(marca-producto).value;
+    var categoriaProducto = document.getElementById(categoria-producto).value;
+    var urlimageProducto = document.getElementById(urlimage-producto).value;
+    var precioProducto = document.getElementById(precio-producto).value;
+    var stockProducto = document.getElementById(stock-producto).value;
 
-  console.log(producto1);
 }
 
 let producto1 = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlimageProducto, precioProducto, stockProducto);
+
+console.log(producto1);

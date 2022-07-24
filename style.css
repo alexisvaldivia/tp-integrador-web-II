@@ -4,10 +4,6 @@ body {
   padding: 0;
 }
 
-ul {
-  list-style: none;
-}
-
-ul li {
-  margin: 0 0 0.5rem 0
+.form-group {
+  margin: 0 0 0.5rem 0;
 }
