@@ -7,3 +7,8 @@ body {
 .form-group {
   margin: 0 0 0.5rem 0;
 }
+
+img {
+  width: 266px;
+  height: 180px;
+}

@@ -31,17 +31,39 @@ class Producto {
     }
 }
 
+let products = []
 
 function crearProducto() {
-    var nombreProducto = document.getElementById(nombre-producto).value;
-    var marcaProducto = document.getElementById(marca-producto).value;
-    var categoriaProducto = document.getElementById(categoria-producto).value;
-    var urlimageProducto = document.getElementById(urlimage-producto).value;
-    var precioProducto = document.getElementById(precio-producto).value;
-    var stockProducto = document.getElementById(stock-producto).value;
+    let nombreProducto = document.getElementById("nombre-producto").value;
+    let marcaProducto = document.getElementById("marca-producto").value;
+    let categoriaProducto = document.getElementById("categoria-producto").value;
+    let urlImageProducto = document.getElementById("url-image-producto").value;
+    let precioProducto = document.getElementById("precio-producto").value;
+    let stockProducto = document.getElementById("stock-producto").value;
 
+    let nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, stockProducto);
+
+    products.push(nuevoProducto);
+
+    // addProductCard();
+
+    const productList = document.getElementById("product-list");
+    const element = document.createElement("div");
+    element.innerHTML = `
+    <div class="card mb-5" style="width: 18rem;">
+    <img class="card-img-top" src="${nuevoProducto.urlimage}">
+    <div class="card-body">
+        <h5 class="card-title">${nuevoProducto.nombreCompleto()}</h5>
+        <p>Categoría: ${nuevoProducto.categoria}</p>
+        <p>Precio: ${nuevoProducto.precio}</p>
+        <p>Stock: ${nuevoProducto.stock}</p>
+    </div>
+</div>
+    `
+
+    productList.appendChild(element);
 }
 
-let producto1 = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlimageProducto, precioProducto, stockProducto);
+function addProductCard() {
 
-console.log(producto1);
+}
