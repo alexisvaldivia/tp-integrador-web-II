@@ -9,6 +9,7 @@ class Compra {
     }
 
     agregarProducto() {
+        this.productos.push(nuevoProducto);
     }
 }
 
@@ -22,8 +23,10 @@ class Producto {
         this.stock = stock
     }
 
-    venta(asd) {
-        this.stock -= asd;
+    venta() {
+        let productStock = parseInt(document.getElementById("product-stock").innerHTML);
+        productStock -= 1;
+        document.getElementById("product-stock").innerHTML = productStock;
     }
 
     nombreCompleto() {
@@ -31,39 +34,47 @@ class Producto {
     }
 }
 
-let products = []
-
 function crearProducto() {
-    let nombreProducto = document.getElementById("nombre-producto").value;
-    let marcaProducto = document.getElementById("marca-producto").value;
-    let categoriaProducto = document.getElementById("categoria-producto").value;
-    let urlImageProducto = document.getElementById("url-image-producto").value;
-    let precioProducto = document.getElementById("precio-producto").value;
-    let stockProducto = document.getElementById("stock-producto").value;
+    nombreProducto = document.getElementById("nombre-producto").value;
+    marcaProducto = document.getElementById("marca-producto").value;
+    categoriaProducto = document.getElementById("categoria-producto").value;
+    urlImageProducto = document.getElementById("url-image-producto").value;
+    precioProducto = document.getElementById("precio-producto").value;
+    stockProducto = document.getElementById("stock-producto").value;
 
-    let nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, stockProducto);
+    nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, stockProducto);
 
-    products.push(nuevoProducto);
+    compra.agregarProducto(nuevoProducto)
 
-    // addProductCard();
+    addProductCard();
+}
 
+function addProductCard() {
     const productList = document.getElementById("product-list");
     const element = document.createElement("div");
-    element.innerHTML = `
-    <div class="card mb-5" style="width: 18rem;">
-    <img class="card-img-top" src="${nuevoProducto.urlimage}">
-    <div class="card-body">
-        <h5 class="card-title">${nuevoProducto.nombreCompleto()}</h5>
-        <p>Categoría: ${nuevoProducto.categoria}</p>
-        <p>Precio: ${nuevoProducto.precio}</p>
-        <p>Stock: ${nuevoProducto.stock}</p>
-    </div>
-</div>
-    `
+    element.innerHTML =
+    `<div class="card mb-5" style="width: 18rem; margin: auto;">
+        <img class="card-img-top" src="${nuevoProducto.urlimage}">
+        <div class="card-body">
+            <h5 class="card-title">${nuevoProducto.nombreCompleto()}</h5>
+            <p>Categoría: ${nuevoProducto.categoria}</p>
+            <p>Precio: ${nuevoProducto.precio}</p>
+            <p id="product-stock">Stock: ${nuevoProducto.stock}</p>
+            <button type="button" class="btn btn-secondary" onclick="addToCart()">Añadir</button>
+        </div>
+    </div>`
 
     productList.appendChild(element);
 }
 
-function addProductCard() {
+compra = new Compra()
 
+let cuantityProducts = 0;
+
+function addToCart() {
+    cuantityProducts += 1;
+    document.getElementById("quantity-products").innerHTML = cuantityProducts
+
+    nuevoProducto.venta()
+    compra.agregarProducto()
 }
