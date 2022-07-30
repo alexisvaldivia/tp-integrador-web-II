@@ -1,13 +1,42 @@
 console.log('js logged');
 
-import {Compra, Producto} from './classes'
+class Compra {
+    constructor(cliente, tarjeta) {
+        this.productos = []
+        this.cliente = cliente
+        this.tarjeta = tarjeta
+    }
 
+    agregarProducto(nuevoProducto) {
+        this.productos.push(nuevoProducto);
+    }
+}
 
+class Producto {
+    constructor(nombre, marca, categoria, urlimage, precio, cantidad) {
+        this.nombre = nombre
+        this.marca = marca
+        this.categoria = categoria
+        this.urlimage = urlimage
+        this.precio = precio
+        this.cantidad = cantidad
+    }
+
+    nombreCompleto() {
+        return `${this.nombre} ${this.marca}`;
+    }
+}
 
 function createNewClient() {
-    var cardCheckbox = document.getElementById('card-checkbox').checked;
     var clientName = document.getElementById('client-name').value;
+    var cardCheckbox = document.getElementById('card-checkbox').checked;
     var buy = new Compra(clientName, cardCheckbox);
+    console.log(buy)
+
+    // delete button "Crear cliente"
+    let clientForm = document.getElementById('client-form');
+    let clientFormButton = document.getElementById('create-client-button');
+    clientForm.removeChild(clientFormButton);
 }
 
 function crearProducto() {
@@ -16,9 +45,8 @@ function crearProducto() {
     categoriaProducto = document.getElementById('categoria-producto').value;
     urlImageProducto = document.getElementById('url-image-producto').value;
     precioProducto = document.getElementById('precio-producto').value;
-    stockProducto = document.getElementById('stock-producto').value;
 
-    nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, stockProducto);
+    nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, cantidadProducto);
 
     compra.agregarProducto(nuevoProducto)
 
@@ -35,7 +63,7 @@ function addProductCard() {
             <h5 class='card-title'>${nuevoProducto.nombreCompleto()}</h5>
             <p>Categoría: ${nuevoProducto.categoria}</p>
             <p>Precio: ${nuevoProducto.precio}</p>
-            <p id='product-stock'>Stock: ${nuevoProducto.stock}</p>
+            <p id='product-cantidad'>cantidad: ${nuevoProducto.cantidad}</p>
             <button type='button' class='btn btn-secondary' onclick='addToCart()'>Añadir</button>
         </div>
     </div>`
