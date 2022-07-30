@@ -1,4 +1,4 @@
-console.log('js logged');
+console.log('js logged')
 
 class Compra {
     constructor(cliente, tarjeta) {
@@ -9,6 +9,20 @@ class Compra {
 
     agregarProducto(nuevoProducto) {
         this.productos.push(nuevoProducto);
+    }
+
+    subtotal() {
+        var subtotal = 0;
+        for (let producto of this.productos) {
+            subtotal += producto.precio * producto.cantidad;
+        }
+        return subtotal;
+    }
+
+    total() {
+        if (tarjeta) {
+            this.subtotal +=
+        }
     }
 }
 
@@ -28,27 +42,30 @@ class Producto {
 }
 
 function createNewClient() {
-    var clientName = document.getElementById('client-name').value;
-    var cardCheckbox = document.getElementById('card-checkbox').checked;
-    var buy = new Compra(clientName, cardCheckbox);
-    console.log(buy)
+    let clientName = document.getElementById('client-name').value;
+    let cardCheckbox = document.getElementById('card-checkbox').checked;
+    buy = new Compra(clientName, cardCheckbox);
 
-    // delete button "Crear cliente"
+    // delete button 'Crear cliente'
     let clientForm = document.getElementById('client-form');
     let clientFormButton = document.getElementById('create-client-button');
     clientForm.removeChild(clientFormButton);
 }
 
-function crearProducto() {
+function createProduct() {
     nombreProducto = document.getElementById('nombre-producto').value;
     marcaProducto = document.getElementById('marca-producto').value;
     categoriaProducto = document.getElementById('categoria-producto').value;
     urlImageProducto = document.getElementById('url-image-producto').value;
     precioProducto = document.getElementById('precio-producto').value;
+    cantidadProducto = document.getElementById('cantidad-producto').value;
 
     nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, cantidadProducto);
 
-    compra.agregarProducto(nuevoProducto)
+    buy.agregarProducto(nuevoProducto);
+
+    let subtotal = document.getElementById('subtotal');
+    subtotal.innerHTML = buy.subtotal();
 
     addProductCard();
 }
@@ -64,21 +81,8 @@ function addProductCard() {
             <p>Categoría: ${nuevoProducto.categoria}</p>
             <p>Precio: ${nuevoProducto.precio}</p>
             <p id='product-cantidad'>cantidad: ${nuevoProducto.cantidad}</p>
-            <button type='button' class='btn btn-secondary' onclick='addToCart()'>Añadir</button>
         </div>
     </div>`
 
     productList.appendChild(element);
-}
-
-compra = new Compra()
-
-let cuantityProducts = 0;
-
-function addToCart() {
-    cuantityProducts += 1;
-    document.getElementById('quantity-products').innerHTML = cuantityProducts
-
-    nuevoProducto.venta()
-    compra.agregarProducto()
 }
