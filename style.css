@@ -15,16 +15,23 @@ body {
   supported by Chrome, Edge, Opera and Firefox */
 }
 
+#client-form-row {
+  background-color: aliceblue;
+}
+
 .form-group {
   margin: 0 0 0.5rem 0;
 }
 
+#client-form {
+  text-align: center;
+}
+
 img {
-  width: 266px;
-  height: 180px;
+  width: 4rem;
+  height: 4rem;
 }
 
 p {
   margin: 0;
-  cursor:none;
 }

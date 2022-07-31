@@ -1,5 +1,9 @@
 console.log('js logged')
 
+function percentageCalculator(number, percentage) {
+    return (number / 100) * percentage;
+}
+
 class Compra {
     constructor(cliente, tarjeta) {
         this.productos = []
@@ -12,17 +16,22 @@ class Compra {
     }
 
     subtotal() {
-        var subtotal = 0;
+        let subtotal = 0;
         for (let producto of this.productos) {
             subtotal += producto.precio * producto.cantidad;
         }
-        return subtotal;
+        return parseInt(subtotal).toFixed(2);
     }
 
     total() {
-        if (tarjeta) {
-            this.subtotal +=
+        let total = parseFloat(this.subtotal())
+        total += percentageCalculator(total, 21);
+
+        if (this.tarjeta) {
+            total += percentageCalculator(total, 15);
         }
+
+        return total.toFixed(2);
     }
 }
 
@@ -58,7 +67,7 @@ function createProduct() {
     categoriaProducto = document.getElementById('categoria-producto').value;
     urlImageProducto = document.getElementById('url-image-producto').value;
     precioProducto = document.getElementById('precio-producto').value;
-    cantidadProducto = document.getElementById('cantidad-producto').value;
+    cantidadProducto = parseInt(document.getElementById('cantidad-producto').value);
 
     nuevoProducto = new Producto(nombreProducto, marcaProducto, categoriaProducto, urlImageProducto, precioProducto, cantidadProducto);
 
@@ -67,6 +76,11 @@ function createProduct() {
     let subtotal = document.getElementById('subtotal');
     subtotal.innerHTML = buy.subtotal();
 
+    typeof(subtotal)
+
+    let total = document.getElementById('total');
+    total.innerHTML =  buy.total();
+
     addProductCard();
 }
 
@@ -74,13 +88,13 @@ function addProductCard() {
     const productList = document.getElementById('product-list');
     const element = document.createElement('div');
     element.innerHTML =
-    `<div class='card mb-5' style='width: 18rem; margin: auto;'>
-        <img class='card-img-top' src='${nuevoProducto.urlimage}'>
+    `<div class='card text-left mb-2'>
         <div class='card-body'>
-            <h5 class='card-title'>${nuevoProducto.nombreCompleto()}</h5>
-            <p>Categoría: ${nuevoProducto.categoria}</p>
-            <p>Precio: ${nuevoProducto.precio}</p>
-            <p id='product-cantidad'>cantidad: ${nuevoProducto.cantidad}</p>
+            <h3>${nuevoProducto.nombreCompleto()}</h3>
+            <img src='${nuevoProducto.urlimage}'>
+            <strong>Categoría</strong>: ${nuevoProducto.categoria}
+            <strong>Precio</strong>: $${nuevoProducto.precio}
+            <strong id='product-cantidad'>Cantidad</strong>: ${nuevoProducto.cantidad}
         </div>
     </div>`
 
