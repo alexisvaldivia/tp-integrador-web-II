@@ -91,7 +91,7 @@ function addProductCard() {
     `<div class='card text-left mb-2'>
         <div class='card-body'>
             <h3>${nuevoProducto.nombreCompleto()}</h3>
-            <img src='${nuevoProducto.urlimage}'>
+            <img src='${nuevoProducto.urlimage}'">
             <strong>Categoría</strong>: ${nuevoProducto.categoria}
             <strong>Precio</strong>: $${nuevoProducto.precio}
             <strong id='product-cantidad'>Cantidad</strong>: ${nuevoProducto.cantidad}
