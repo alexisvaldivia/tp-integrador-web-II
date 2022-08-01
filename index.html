@@ -12,18 +12,27 @@
 </head>
 
 <body>
-    <header></header>
+    <header>
 
-    <section id='client-form'>
-        <h2>Formulario de compra</h2>
-        <div class='form-group'><input type='text' class='form-control' id='client-name'
-                placeholder='Nombre del cliente: Ej Carlos'"></div>
-        <input type='checkbox' id='card-checkbox'>
-        <label for="card-checkbox" class="noselect">Pago con tarjeta</label> <br>
-        <button type='button' id="create-client-button" class='btn btn-primary' onclick='createNewClient()'>Crear
-            cliente</button>
-    </section>
-    <div class='container'>
+    </header>
+
+    <div class='container-fluid'>
+
+        <div class="row mt-5 justify-content-center">
+            <section id='client-form' class="col-6">
+                <h2>Formulario de compra</h2>
+                <div class='form-group'><input type='text' class='form-control' id='client-name'
+                        placeholder='Nombre del cliente: Ej Carlos'"></div>
+                <div class=" form-check" id="div-checkbox-card">
+                    <input type="checkbox" class="form-check-input" id="card-checkbox">
+                    <label class="form-check-label" for="card-checkbox">Pago con tarjeta</label>
+                </div>
+                <button type='button' id="create-client-button" class='btn btn-primary'
+                    onclick='createNewClient()'>Crear
+                    cliente</button>
+            </section>
+        </div>
+
         <div class='row mt-5'>
             <form class='col-md-4'>
                 <h2>Producto</h2>
