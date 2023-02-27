@@ -3,6 +3,10 @@ body {
   background-color: aliceblue;
 }
 
+.container, .container-fluid {
+  padding-top: 10rem;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -13,28 +17,11 @@ body {
   supported by Chrome, Edge, Opera and Firefox */
 }
 
-#client-form-row {
-  background-color: aliceblue;
-}
-
-.form-group {
-  margin: 0 0 0.5rem 0;
-}
-
-#client-form {
-  text-align: center;
+.hide {
+  display: none;
 }
 
 img {
   width: 4rem;
   height: 4rem;
-}
-
-p {
-  margin: 0;
-}
-
-#div-checkbox-card {
-  display: flex;
-  justify-content: center;
 }

@@ -1,4 +1,10 @@
-console.log('js logged')
+// quito la recarga de la página al envíar el formulario
+document.getElementById('login-container').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    document.getElementById('content').classList.remove('hide');
+    document.getElementById('login-container').classList.add('hide');
+})
 
 function percentageCalculator(number, percentage) {
     return (number / 100) * percentage;
@@ -76,10 +82,10 @@ function createProduct() {
     let subtotal = document.getElementById('subtotal');
     subtotal.innerHTML = buy.subtotal();
 
-    typeof(subtotal)
+    typeof (subtotal)
 
     let total = document.getElementById('total');
-    total.innerHTML =  buy.total();
+    total.innerHTML = buy.total();
 
     addProductCard();
 }
@@ -88,7 +94,7 @@ function addProductCard() {
     const productList = document.getElementById('product-list');
     const element = document.createElement('div');
     element.innerHTML =
-    `<div class='card text-left mb-2'>
+        `<div class='card text-left mb-2 w-75 mx-auto'>
         <div class='card-body'>
             <h3>${nuevoProducto.nombreCompleto()}</h3>
             <img src='${nuevoProducto.urlimage}'">
