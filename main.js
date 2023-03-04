@@ -1,14 +1,29 @@
-// quito la recarga de la página al envíar el formulario
-document.getElementById('login-container').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    document.getElementById('content').classList.remove('hide');
-    document.getElementById('login-container').classList.add('hide');
-})
-
 function percentageCalculator(number, percentage) {
     return (number / 100) * percentage;
 }
+
+// El icono de la tajeta de credio se pone verde o rojo dependiendo de si se paga con tarjeta o no.
+
+let cardCheckbox = document.querySelector("input[name=checkbox]");
+cardCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        document.getElementById('card-icon').classList.remove('text-danger');
+        document.getElementById('card-icon').classList.add('text-success');
+    } else {
+        document.getElementById('card-icon').classList.remove('text-success');
+        document.getElementById('card-icon').classList.add('text-danger');
+    }
+});
+
+// Quita la recarga de la página al envíar el formulario, se muestra el contenido de la pàgina y se oculta el formulario de compra.
+
+document.getElementById('login-container').addEventListener('submit', function (event) {
+    event.preventDefault();
+    createNewClient()
+
+    document.getElementById('content-container').classList.remove('hide');
+    document.getElementById('login-container').classList.add('hide');
+})
 
 class Compra {
     constructor(cliente, tarjeta) {
@@ -60,11 +75,6 @@ function createNewClient() {
     let clientName = document.getElementById('client-name').value;
     let cardCheckbox = document.getElementById('card-checkbox').checked;
     buy = new Compra(clientName, cardCheckbox);
-
-    // delete button 'Crear cliente'
-    let clientForm = document.getElementById('client-form');
-    let clientFormButton = document.getElementById('create-client-button');
-    clientForm.removeChild(clientFormButton);
 }
 
 function createProduct() {

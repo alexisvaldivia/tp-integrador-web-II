@@ -1,10 +1,6 @@
 body {
   min-height: 100vh;
-  background-color: aliceblue;
-}
-
-.container, .container-fluid {
-  padding-top: 10rem;
+  background-color: rgb(222, 240, 255);
 }
 
 .noselect {
@@ -19,6 +15,14 @@ body {
 
 .hide {
   display: none;
+}
+
+#login-container {
+  height: 100vh;
+}
+
+#content-container {
+  margin-top: 10rem;
 }
 
 img {
